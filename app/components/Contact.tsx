@@ -1,6 +1,7 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react';
+import Svg from './IconsTable';
 
 export default function Contact() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -45,6 +46,13 @@ export default function Contact() {
     return () => io.disconnect()
   }, [])
 
+  const icons = {
+    email: ["mail", "gafful07@gmail.com", "mailto:gafful07@gmail.com"],
+    telegram: ["brand-telegram", "@anti_ancient_bot", "https://t.me/anti_ancient_bot"],
+    phone: ["phone", "+233 59 386 1032", "tel:+233 59 386 1032"],
+    location: ["current-location", "Accra, Ghana - Remote worldwide", "https://maps.app.goo.gl/tNmZSdTHHpdXboBn7"]
+  }
+
   function handleSubmit() {
     if (!name.trim() || !email.trim() || !message.trim()) return
     setSubmitted(true)
@@ -66,34 +74,20 @@ export default function Contact() {
 
         <div className="contact-grid">
           <div className="contact-info reveal">
-            <div className="contact-item">
-              <div className="contact-icon" aria-hidden="true">@</div>
+
+            {Object.entries(icons).map(([key, value]) => {
+            return (
+               <a href={value[2]} target="_blank" className="contact-item" key={key}>
+
+              <Svg className="contact-icon" data-icon={value[0]} aria-hidden="true" />
               <div>
-                <div className="contact-label">Email</div>
-                <div className="contact-val">gafful07@gmail.com</div>
+                <div className="contact-label">{key.replace(/\D/, key[0].toUpperCase())}</div>
+                <div className="contact-val">{value[1]}</div>
               </div>
-            </div>
-            <div className="contact-item">
-              <div className="contact-icon" aria-hidden="true">✈</div>
-              <div>
-                <div className="contact-label">Telegram</div>
-                <div className="contact-val">@anti_ancient_bot</div>
-              </div>
-            </div>
-            <div className="contact-item">
-              <div className="contact-icon" aria-hidden="true">☎</div>
-              <div>
-                <div className="contact-label">Phone</div>
-                <div className="contact-val">+233 593 861 032</div>
-              </div>
-            </div>
-            <div className="contact-item">
-              <div className="contact-icon" aria-hidden="true">◎</div>
-              <div>
-                <div className="contact-label">Based in</div>
-                <div className="contact-val">Accra, Ghana — Remote worldwide</div>
-              </div>
-            </div>
+                <Svg data-icon='arrow-narrow-right'/>
+              </a>
+            )
+            })}
 
             <div style={{ marginTop: '2rem' }}>
               <div style={{ fontSize: '13px', color: 'var(--text-3)', marginBottom: '0.75rem', letterSpacing: '0.04em' }}>

@@ -60,6 +60,14 @@ a { color: inherit; text-decoration: none; }
 
 img { max-width: 100%; }
 
+svg {
+  width: 24px;
+  height: 24px;
+  display: block;
+  stroke: currentColor;
+  fill: none;
+}
+
 .sr-only {
   position: absolute; width: 1px; height: 1px;
   padding: 0; margin: -1px; overflow: hidden;
@@ -544,25 +552,36 @@ section { padding: 100px 2rem; max-width: 1200px; margin: 0 auto; }
   gap: 4rem; margin-top: 3rem;
 }
 
-.contact-info {}
 
 .contact-item {
+  width: 100%;
   display: flex; align-items: center; gap: 1rem;
   padding: 1rem 0;
   border-bottom: 1px solid var(--border);
   font-size: 14px; color: var(--text-2);
 }
-.contact-item:first-child { border-top: 1px solid var(--border); }
-.contact-icon {
-  width: 36px; height: 36px; border-radius: var(--radius-sm);
-  background: var(--accent-dim); color: var(--accent);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 15px; flex-shrink: 0;
+
+.contact-item > div {
+  flex-grow: 1;
 }
+
+.contact-item svg:not(.contact-icon){
+  width: 2rem;
+  height: 2rem;
+  stroke-width: 2px;
+  transition: all 200ms;
+}
+
+.contact-item {cursor: pointer;
+}.contact-item:hover svg:not(.contact-icon){
+  transform: translateX(-.2rem) scale(115%, 105%);
+}
+
+
+.contact-item:first-child { border-top: 1px solid var(--border); }
+
 .contact-label { font-size: 11px; color: var(--text-3); margin-bottom: 2px; letter-spacing: 0.04em; }
 .contact-val { color: var(--text); font-size: 14px; }
-
-.contact-form {}
 
 .form-row { margin-bottom: 1.25rem; }
 .form-row label {

@@ -24,7 +24,7 @@ export default function ({className, "data-icon": icon}: Props) {
 
    function doIt () {
     const [AllIconsObject] = useState(
-      JSON.parse(localStorage.getItem("icons") || "{}")
+      JSON.parse(localStorage.getItem("icons") ?? "{}")
     );
     
   // }

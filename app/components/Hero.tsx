@@ -116,7 +116,7 @@ export default function Hero() {
 
     if (grid && !reducedMotion) {
       function animGrid() {
-        offset += 0.015
+        offset += 0.15
         if (grid) {
           grid.style.backgroundPosition = `${offset}px ${offset * 0.5}px`
         }
